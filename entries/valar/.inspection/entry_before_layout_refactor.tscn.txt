@@ -1,0 +1,477 @@
+[gd_scene format=4 uid="uid://brbolta34yweq"]
+
+[ext_resource type="Texture2D" uid="uid://cdyc4cej2rd6g" path="res://shared/tileset/textures/furnitures/3_Bathroom_48x48.png" id="bath"]
+[ext_resource type="Texture2D" uid="uid://hnak3f0kwob" path="res://shared/tileset/textures/room-builder/Room_Builder_Floors_48x48.png" id="floors"]
+[ext_resource type="Texture2D" uid="uid://cfky5im51j8h1" path="res://shared/tileset/textures/furnitures/1_Generic_48x48.png" id="generic"]
+[ext_resource type="TileSet" uid="uid://cgryq4oxcic7y" path="res://shared/tileset/nav_tileset.tres" id="nav"]
+[ext_resource type="PackedScene" uid="uid://cu45kxwnynsi" path="res://shared/npc/npc.tscn" id="npc"]
+[ext_resource type="PackedScene" path="res://shared/scene_portal/exit_portal.tscn" id="portal"]
+[ext_resource type="Script" uid="uid://bmj3gnq6s40ub" path="res://entries/valar/resident.gd" id="resident_script"]
+[ext_resource type="TileSet" uid="uid://c70qd876y5o3o" path="res://shared/tileset/room.tres" id="room"]
+[ext_resource type="Texture2D" uid="uid://pyrlrck5sur6" path="res://entries/valar/char/sheet.png" id="sheet"]
+[ext_resource type="Texture2D" uid="uid://byoreetyrsmnf" path="res://shared/tileset/textures/furnitures/17_Visibile_Upstairs_System_48x48.png" id="stairs"]
+[ext_resource type="Texture2D" uid="uid://ccpvy2s6qfbyg" path="res://shared/tileset/textures/room-builder/Room_Builder_Walls_48x48.png" id="walls"]
+
+[sub_resource type="AtlasTexture" id="SideWallFinish"]
+atlas = ExtResource("walls")
+region = Rect2(6, 312, 24, 36)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="WallFinish"]
+atlas = ExtResource("walls")
+region = Rect2(0, 288, 144, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="WoodenTable"]
+atlas = ExtResource("generic")
+region = Rect2(39, 1635, 114, 111)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="WindowFrame"]
+atlas = ExtResource("generic")
+region = Rect2(392, 2082, 76, 66)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="DoorWood"]
+atlas = ExtResource("generic")
+region = Rect2(56, 1640, 72, 72)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="StoneTop"]
+atlas = ExtResource("floors")
+region = Rect2(192, 1536, 48, 48)
+filter_clip = true
+
+[sub_resource type="RectangleShape2D" id="Shape0"]
+size = Vector2(24, 336)
+
+[sub_resource type="RectangleShape2D" id="Shape1"]
+size = Vector2(168, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape2"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape3"]
+size = Vector2(336, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape4"]
+size = Vector2(600, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape5"]
+size = Vector2(24, 192)
+
+[sub_resource type="RectangleShape2D" id="Shape6"]
+size = Vector2(72, 192)
+
+[sub_resource type="RectangleShape2D" id="Shape8"]
+size = Vector2(192, 96)
+
+[sub_resource type="RectangleShape2D" id="Shape9"]
+size = Vector2(24, 264)
+
+[sub_resource type="RectangleShape2D" id="Shape10"]
+size = Vector2(24, 120)
+
+[sub_resource type="RectangleShape2D" id="Shape11"]
+size = Vector2(144, 62)
+
+[sub_resource type="RectangleShape2D" id="Shape12"]
+size = Vector2(40, 78)
+
+[sub_resource type="RectangleShape2D" id="Shape13"]
+size = Vector2(72, 8)
+
+[node name="Entry" type="Node2D" unique_id=1090446459]
+y_sort_enabled = true
+texture_filter = 1
+metadata/layout_note = "顺时针90度布局小样；瓷砖与人物保持正向；下侧通道净宽48像素；手调台面保留62×144占地并换向；凳子保持隐藏。"
+metadata/material_note = "共享48像素图集；瓷砖使用room.tres；侧窗与砖台为场景内组合，原始素材不改写。"
+
+[node name="NavLayer" type="TileMapLayer" parent="." unique_id=1924984724]
+z_index = -30
+tile_map_data = PackedByteArray("AAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAACAAYAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAA=")
+tile_set = ExtResource("nav")
+
+[node name="RoomFloor" type="TileMapLayer" parent="." unique_id=1177160435]
+z_index = -20
+tile_map_data = PackedByteArray("AAAMAAIAAQAJACEAAAAMAAMAAQAJACEAAAAMAAQAAQAJACEAAAAMAAUAAQAJACEAAAAMAAYAAQAJACEAAAALAAIAAQAJACEAAAALAAMAAQAJACEAAAALAAQAAQAJACEAAAALAAUAAQAJACEAAAALAAYAAQAJACEAAAAKAAIAAQAJACEAAAAKAAMAAQAJACEAAAAKAAQAAQAJACEAAAAKAAUAAQAJACEAAAAKAAYAAQAJACEAAAAJAAIAAQAJACEAAAAJAAMAAQAJACEAAAAJAAQAAQAJACEAAAAJAAUAAQAJACEAAAAJAAYAAQAJACEAAAAIAAIAAQAJACEAAAAIAAMAAQAJACEAAAAIAAQAAQAJACEAAAAIAAUAAQAJACEAAAAIAAYAAQAJACEAAAAHAAQAAQAJACEAAAAHAAUAAQAJACEAAAAHAAYAAQAJACEAAAAGAAQAAQAJACEAAAAGAAUAAQAJACEAAAAGAAYAAQAJACEAAAAFAAQAAQAJACEAAAAFAAUAAQAJACEAAAAFAAYAAQAJACEAAAAEAAQAAQAJACEAAAAEAAUAAQAJACEAAAAEAAYAAQAJACEAAAADAAQAAQAJACEAAAADAAUAAQAJACEAAAADAAYAAQAJACEAAAACAAQAAQAJACEAAAACAAUAAQAJACEAAAACAAYAAQAJACEAAAABAAQAAQAJACEAAAABAAUAAQAJACEAAAABAAYAAQAJACEAAAA=")
+tile_set = ExtResource("room")
+
+[node name="Walls" type="Node2D" parent="." unique_id=3282839]
+z_index = 3
+
+[node name="North" type="NinePatchRect" parent="Walls" unique_id=1269413035]
+offset_left = 624.0
+offset_top = 81.0
+offset_right = 648.0
+offset_bottom = 360.0
+texture = SubResource("SideWallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="WestUpperEdge" type="Polygon2D" parent="Walls" unique_id=614206808]
+visible = false
+position = Vector2(-1, 25)
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(624, 24, 624, 48, 456, 48, 456, 24)
+
+[node name="WestUpper" type="NinePatchRect" parent="Walls" unique_id=929166062]
+offset_left = 455.0
+offset_top = 78.0
+offset_right = 623.0
+offset_bottom = 96.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="WestDoorJambEdge" type="Polygon2D" parent="Walls" unique_id=756537812]
+position = Vector2(-1, 25)
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(384, 24, 384, 48, 360, 48, 360, 24)
+
+[node name="WestDoorJamb" type="NinePatchRect" parent="Walls" unique_id=111485426]
+offset_left = 359.0
+offset_top = 52.0
+offset_right = 383.0
+offset_bottom = 70.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="WestInsetEdge" type="Polygon2D" parent="Walls" unique_id=1453949812]
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(360, 168, 360, 192, 48, 192, 48, 168)
+
+[node name="WestInset" type="NinePatchRect" parent="Walls" unique_id=1226360805]
+offset_left = 48.0
+offset_top = 171.0
+offset_right = 360.0
+offset_bottom = 189.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="EastUpperEdge" type="Polygon2D" parent="Walls" unique_id=157338693]
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(624, 336, 624, 360, 552, 360, 552, 336)
+
+[node name="EastUpper" type="NinePatchRect" parent="Walls" unique_id=548702411]
+offset_left = 552.0
+offset_top = 339.0
+offset_right = 624.0
+offset_bottom = 357.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="EastMiddleEdge" type="Polygon2D" parent="Walls" unique_id=1849378721]
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(456, 336, 456, 360, 336, 360, 336, 336)
+
+[node name="EastMiddle" type="NinePatchRect" parent="Walls" unique_id=1264517177]
+offset_left = 336.0
+offset_top = 339.0
+offset_right = 456.0
+offset_bottom = 357.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="EastLowerEdge" type="Polygon2D" parent="Walls" unique_id=879272337]
+color = Color(0.23, 0.23, 0.29, 1)
+polygon = PackedVector2Array(240, 336, 240, 360, 48, 360, 48, 336)
+
+[node name="EastLower" type="NinePatchRect" parent="Walls" unique_id=103145136]
+offset_left = 48.0
+offset_top = 339.0
+offset_right = 240.0
+offset_bottom = 357.0
+texture = SubResource("WallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="South" type="NinePatchRect" parent="Walls" unique_id=484164994]
+offset_left = 93.0
+offset_top = 170.0
+offset_right = 117.0
+offset_bottom = 362.0
+texture = SubResource("SideWallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="PartitionKitchen" type="NinePatchRect" parent="Walls" unique_id=1441637954]
+offset_left = 360.0
+offset_top = 78.0
+offset_right = 384.0
+offset_bottom = 288.0
+texture = SubResource("SideWallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="PartitionBathroom" type="NinePatchRect" parent="Walls" unique_id=1053810322]
+offset_left = 192.0
+offset_top = 168.0
+offset_right = 216.0
+offset_bottom = 288.0
+texture = SubResource("SideWallFinish")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+
+[node name="KitchenEnd" type="Polygon2D" parent="Walls" unique_id=855063531]
+color = Color(0.23, 0.23, 0.28, 1)
+polygon = PackedVector2Array(384, 280, 384, 288, 360, 288, 360, 280)
+
+[node name="BathroomEnd" type="Polygon2D" parent="Walls" unique_id=318796524]
+color = Color(0.23, 0.23, 0.28, 1)
+polygon = PackedVector2Array(216, 280, 216, 288, 192, 288, 192, 280)
+
+[node name="Desk" type="Node2D" parent="." unique_id=1818005585]
+position = Vector2(552, 240)
+
+[node name="Table" type="NinePatchRect" parent="Desk" unique_id=1381920621]
+offset_top = -144.0
+offset_right = 72.0
+offset_bottom = 34.0
+texture = SubResource("WoodenTable")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 15
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Chair" type="Node2D" parent="." unique_id=6479318]
+visible = false
+position = Vector2(480, 120)
+
+[node name="Sprite" type="Sprite2D" parent="Chair" unique_id=554167344]
+visible = false
+position = Vector2(0, -61.999992)
+scale = Vector2(1, 0.68750006)
+texture = ExtResource("generic")
+centered = false
+region_enabled = true
+region_rect = Rect2(240, 2400, 48, 48)
+region_filter_clip_enabled = true
+
+[node name="LoftStairs" type="Node2D" parent="." unique_id=2076319770]
+position = Vector2(432, 240)
+rotation = 1.5707964
+metadata/note = "顺时针布局试摆：现有俯视台阶横向排布，尚未制作阁楼。"
+
+[node name="Top" type="Sprite2D" parent="LoftStairs" unique_id=294951332]
+position = Vector2(21, -191.26425)
+scale = Vector2(0.7780307, 1.0471721)
+texture = ExtResource("stairs")
+centered = false
+region_enabled = true
+region_rect = Rect2(24, 864, 96, 48)
+region_filter_clip_enabled = true
+
+[node name="Steps0" type="Sprite2D" parent="LoftStairs" unique_id=1635964921]
+position = Vector2(21, -143.26425)
+scale = Vector2(0.7780307, 1.0471721)
+texture = ExtResource("stairs")
+centered = false
+region_enabled = true
+region_rect = Rect2(24, 912, 96, 48)
+region_filter_clip_enabled = true
+
+[node name="Steps1" type="Sprite2D" parent="LoftStairs" unique_id=479033500]
+position = Vector2(21, -95.26425)
+scale = Vector2(0.7780307, 1.0471721)
+texture = ExtResource("stairs")
+centered = false
+region_enabled = true
+region_rect = Rect2(24, 912, 96, 48)
+region_filter_clip_enabled = true
+
+[node name="Foot" type="Sprite2D" parent="LoftStairs" unique_id=1131352056]
+position = Vector2(21, -47.26425)
+scale = Vector2(0.7780307, 1.0471721)
+texture = ExtResource("stairs")
+centered = false
+region_enabled = true
+region_rect = Rect2(24, 1008, 96, 48)
+region_filter_clip_enabled = true
+
+[node name="Windows" type="Node2D" parent="." unique_id=2059308364]
+z_index = 5
+metadata/note = "两扇侧墙窗，原图玻璃窗框局部组合。"
+
+[node name="StairWindow" type="NinePatchRect" parent="Windows" unique_id=1682607422]
+offset_left = 456.0
+offset_top = 334.0
+offset_right = 552.0
+offset_bottom = 362.0
+texture = SubResource("WindowFrame")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+
+[node name="BrickPlatformWindow" type="NinePatchRect" parent="Windows" unique_id=938724022]
+offset_left = 240.0
+offset_top = 334.0
+offset_right = 336.0
+offset_bottom = 362.0
+texture = SubResource("WindowFrame")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+
+[node name="Door" type="Node2D" parent="." unique_id=62738734]
+visible = false
+z_index = 5
+
+[node name="Threshold" type="Polygon2D" parent="Door" unique_id=1613999252]
+position = Vector2(-1, 25)
+color = Color(0.45, 0.37, 0.26, 1)
+polygon = PackedVector2Array(456, 24, 456, 48, 384, 48, 384, 24)
+
+[node name="OpenLeaf" type="NinePatchRect" parent="Door" unique_id=301942150]
+visible = false
+offset_left = 388.0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 108.0
+texture = SubResource("DoorWood")
+patch_margin_left = 6
+patch_margin_top = 3
+patch_margin_right = 6
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="BrickPlatform" type="Node2D" parent="." unique_id=1016021929]
+position = Vector2(216, 254)
+metadata/note = "砖纹侧面加空白石质台面，没有炉具。"
+
+[node name="BareTop" type="NinePatchRect" parent="BrickPlatform" unique_id=1441906092]
+offset_top = -62.0
+offset_right = 144.0
+texture = SubResource("StoneTop")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Toilet" type="Node2D" parent="." unique_id=1614666260]
+z_index = 4
+position = Vector2(90, 284)
+
+[node name="Sprite" type="Sprite2D" parent="Toilet" unique_id=2064242695]
+position = Vector2(37, -126)
+texture = ExtResource("bath")
+centered = false
+region_enabled = true
+region_rect = Rect2(480, 0, 48, 144)
+region_filter_clip_enabled = true
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=97862793]
+visible = false
+collision_mask = 0
+
+[node name="Block0" type="CollisionShape2D" parent="Collisions" unique_id=1888007818]
+position = Vector2(636, 192)
+shape = SubResource("Shape0")
+
+[node name="Block1" type="CollisionShape2D" parent="Collisions" unique_id=255764829]
+position = Vector2(540, 36)
+shape = SubResource("Shape1")
+
+[node name="Block2" type="CollisionShape2D" parent="Collisions" unique_id=1120735294]
+position = Vector2(372, 36)
+shape = SubResource("Shape2")
+
+[node name="Block3" type="CollisionShape2D" parent="Collisions" unique_id=358140883]
+position = Vector2(192, 180)
+shape = SubResource("Shape3")
+
+[node name="Block4" type="CollisionShape2D" parent="Collisions" unique_id=1389984523]
+position = Vector2(324, 348)
+shape = SubResource("Shape4")
+
+[node name="Block5" type="CollisionShape2D" parent="Collisions" unique_id=770196006]
+position = Vector2(36, 264)
+shape = SubResource("Shape5")
+
+[node name="Block6" type="CollisionShape2D" parent="Collisions" unique_id=903654419]
+position = Vector2(588, 144)
+shape = SubResource("Shape6")
+
+[node name="Block8" type="CollisionShape2D" parent="Collisions" unique_id=265015801]
+position = Vector2(528, 288)
+shape = SubResource("Shape8")
+
+[node name="Block9" type="CollisionShape2D" parent="Collisions" unique_id=429261429]
+position = Vector2(372, 156)
+shape = SubResource("Shape9")
+
+[node name="Block10" type="CollisionShape2D" parent="Collisions" unique_id=423139724]
+position = Vector2(204, 228)
+shape = SubResource("Shape10")
+
+[node name="Block11" type="CollisionShape2D" parent="Collisions" unique_id=404003932]
+position = Vector2(288, 223)
+shape = SubResource("Shape11")
+
+[node name="Block12" type="CollisionShape2D" parent="Collisions" unique_id=1664084206]
+position = Vector2(114, 245)
+shape = SubResource("Shape12")
+
+[node name="Block13" type="CollisionShape2D" parent="Collisions" unique_id=258771595]
+position = Vector2(420, 24)
+shape = SubResource("Shape13")
+
+[node name="EntryPoint" type="Marker2D" parent="." unique_id=1906711827 groups=["entry_point"]]
+visible = false
+position = Vector2(408, 120)
+
+[node name="Resident" parent="." unique_id=1047394815 instance=ExtResource("npc")]
+position = Vector2(528, 144)
+script = ExtResource("resident_script")
+sheet = ExtResource("sheet")
+dialogue_json = "res://entries/valar/dialogue.json"
+
+[node name="ExitPortal" parent="." unique_id=507725554 instance=ExtResource("portal")]
+visible = false
+position = Vector2(419, 49)
+collision_mask = 0
+monitoring = false
+metadata/note = "一楼小样：室外目的地未制作，出口暂不启用；楼梯不跳转旧inner_room。"
