@@ -1,7 +1,0 @@
-extends "res://shared/npc/npc.gd"
-
-
-func _ready() -> void:
-	super._ready()
-	_anim.play("idle", CharacterSheet.DIR_UP)
-	_sync_sprite()

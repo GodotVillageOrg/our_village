@@ -1,7 +1,0 @@
-Godot Engine v4.7.2.stable.steam.ed1daf0bf - https://godotengine.org
-OpenGL API 3.3.0 NVIDIA 610.62 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3060 Laptop GPU
-
-bedding_fade_mid alpha=0.41394492983818 visible=true player_z=12
-bedding_full alpha=1.0 visible=true player_z=12
-bedding_fade_out alpha=0.63201653957367 visible=true player_z=12
-bedding_hidden alpha=0.0 visible=false player_z=0

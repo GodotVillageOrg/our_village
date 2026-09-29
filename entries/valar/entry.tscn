@@ -13,23 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://byoreetyrsmnf" path="res://shared/tileset/textures/furnitures/17_Visibile_Upstairs_System_48x48.png" id="stairs"]
 [ext_resource type="TileSet" uid="uid://43nx1ltnirmj" path="res://entries/valar/wall_modules.tres" id="wall_modules"]
 
-[sub_resource type="StyleBoxFlat" id="InteractKeyStyle"]
-bg_color = Color(0.96, 0.94, 0.87, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.23, 0.23, 0.3, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_left = 3
-corner_radius_bottom_right = 3
-
-[sub_resource type="AtlasTexture" id="SinkCabinetTexture"]
-atlas = ExtResource("bath")
-region = Rect2(3, 1167, 93, 60)
-filter_clip = true
-
 [sub_resource type="AtlasTexture" id="WoodenTable"]
 atlas = ExtResource("generic")
 region = Rect2(39, 1635, 114, 111)
@@ -48,6 +31,11 @@ filter_clip = true
 [sub_resource type="AtlasTexture" id="DoorWood"]
 atlas = ExtResource("generic")
 region = Rect2(56, 1640, 72, 72)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="SinkCabinetTexture"]
+atlas = ExtResource("bath")
+region = Rect2(3, 1167, 93, 60)
 filter_clip = true
 
 [sub_resource type="RectangleShape2D" id="EastOuterWallShape"]
@@ -88,6 +76,18 @@ size = Vector2(40, 66)
 
 [sub_resource type="RectangleShape2D" id="EntryBoundaryShape"]
 size = Vector2(72, 8)
+
+[sub_resource type="StyleBoxFlat" id="InteractKeyStyle"]
+bg_color = Color(0.96, 0.94, 0.87, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23, 0.23, 0.3, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="RectangleShape2D" id="LoftTriggerShape"]
 size = Vector2(48, 54)
@@ -345,10 +345,9 @@ axis_stretch_vertical = 1
 position = Vector2(216, 240)
 metadata/note = "保留用户手调的144×70范围（216,170至360,240），替换为柜体与洗手盆组合；脚底排序位于y240。"
 
-[node name="Cabinet" type="NinePatchRect" parent="Washbasin"]
+[node name="Cabinet" type="NinePatchRect" parent="Washbasin" unique_id=1255702375]
 offset_top = -55.0
 offset_right = 144.0
-mouse_filter = 2
 texture = SubResource("SinkCabinetTexture")
 patch_margin_left = 12
 patch_margin_top = 27
@@ -356,7 +355,7 @@ patch_margin_right = 12
 patch_margin_bottom = 24
 axis_stretch_horizontal = 1
 
-[node name="Basin" type="Sprite2D" parent="Washbasin"]
+[node name="Basin" type="Sprite2D" parent="Washbasin" unique_id=1034601413]
 position = Vector2(48, -70)
 texture = ExtResource("bath")
 centered = false
@@ -445,14 +444,13 @@ script = ExtResource("resident_script")
 sheet = ExtResource("sheet")
 dialogue_json = "res://entries/valar/dialogue.json"
 
-[node name="InteractPrompt" type="Label" parent="Resident"]
+[node name="InteractPrompt" type="Label" parent="Resident" unique_id=10998136]
 visible = false
 z_index = 3
 offset_left = -12.0
 offset_top = -90.0
 offset_right = 12.0
 offset_bottom = -66.0
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.23, 0.23, 0.3, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("InteractKeyStyle")
